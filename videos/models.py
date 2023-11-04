@@ -20,7 +20,7 @@ class Video(SharedFields):
     id = models.BigAutoField(primary_key=True)
     title_of_video = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
-    video_image = models.CharField(max_length=20)
+    image = models.FileField(upload_to="media/images/", null=True)
     views = models.IntegerField()
     category = models.ForeignKey(Category,  models.SET_NULL, blank=True, null=True) 
     user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
