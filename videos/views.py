@@ -8,6 +8,6 @@ from .models import (
 
 def home(request):
     context = {}
-    videos = Video.objects.all()[:8]
+    videos = Video.objects.all()[:6].select_related('user')
     context['videos'] = videos
     return render(request, 'home.html', context)
