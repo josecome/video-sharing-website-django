@@ -5,6 +5,10 @@ Home page
 
 <img src="videos/static/home.jpg">
 
+Video page
+
+<img src="videos/static/video.jpg">
+
 ## To run the project
 
 Type and run in commandline the follow command to install required packages
