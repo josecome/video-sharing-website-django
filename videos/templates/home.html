@@ -6,10 +6,12 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="color: #0606A7; width: 100%; background-color: #D6DCD7; border-radius: 32px;">
                 {% for video in videos %}
                     <div class="card" style="width: 18rem; padding: 10px; margin: 10px;">
+                        <a href="/videos/{{ video.id }}">
                         <img src="{{ video.image.url }}"
                           class="card-img-top"
                           style="width: 260px; height: 200px;"
-                          alt="...">
+                          alt="...">                            
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title">{{ video.title_of_video }}</h5>
                             <p class="card-text">{{ video.user.username }}</p>
