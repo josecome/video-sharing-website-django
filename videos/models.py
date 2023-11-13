@@ -24,3 +24,12 @@ class Video(SharedFields):
     views = models.IntegerField()
     category = models.ForeignKey(Category,  models.SET_NULL, blank=True, null=True) 
     user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
+
+
+class Comment(SharedFields):
+    id = models.BigAutoField(primary_key=True)
+    comment = models.CharField(max_length=20)
+    like = models.SmallIntegerField(default=1)
+    like_type = models.CharField(max_length=40)
+    video = models.ForeignKey(Category,  models.SET_NULL, blank=True, null=True) 
+    user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
