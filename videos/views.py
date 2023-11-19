@@ -29,5 +29,6 @@ def video_detail(request, id):
     context['like'] = like
     context['love'] = love
     context['sad'] = sad
+    context['user_icon'] = video.user.username[0]
 
     return render(request, 'video.html', context)
