@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from .models import (
     Category,
-    Video
+    Video,
+    Like
 )
+from django.db.models import Count
 
 # Create your views here.
 
@@ -18,6 +20,14 @@ def video_detail(request, id):
     video = Video.objects.get(id=id)
     # videos = Video.objects.filter(id=id).select_related('user')
     videos = Video.objects.all()[:6].select_related('user')
+    like = len(Like.objects.filter(type='like'))
+    love = len(Like.objects.filter(type='love'))
+    sad = len(Like.objects.filter(type='sad'))
+    print(like)
     context['video'] = video
     context['videos'] = videos
+    context['like'] = like
+    context['love'] = love
+    context['sad'] = sad
+
     return render(request, 'video.html', context)
