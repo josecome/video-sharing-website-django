@@ -9,6 +9,10 @@ Video page
 
 <img src="videos/static/video2.jpg">
 
+Studio page
+
+<img src="videos/static/studio.jpg">
+
 ## To run the project
 
 Type and run in commandline the follow command to install required packages
