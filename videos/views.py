@@ -24,8 +24,8 @@ def video_detail(request, id):
     like = len(Like.objects.filter(type='like'))
     love = len(Like.objects.filter(type='love'))
     sad = len(Like.objects.filter(type='sad'))
-    comments = Comment.objects.all()
-    print(like)
+    comments = Comment.objects.filter(video_id=id)
+
     context['video'] = video
     context['videos'] = videos
     context['like'] = like

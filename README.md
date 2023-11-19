@@ -7,7 +7,7 @@ Home page
 
 Video page
 
-<img src="videos/static/video.jpg">
+<img src="videos/static/video2.jpg">
 
 ## To run the project
 
