@@ -35,3 +35,7 @@ def video_detail(request, id):
     context['comments'] = comments
 
     return render(request, 'video.html', context)
+
+
+def studio(request):
+    return render(request, 'studio.html')
