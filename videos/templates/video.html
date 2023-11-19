@@ -52,7 +52,24 @@
                     placeholder="Write a comment..."
                   />
                   <button type="button" class="btn btn-light" style="margin-left: 10px; font-style: italic;">Post</button>
-              </div>   
+              </div>
+              {% for comment in comments %}
+              <div class="card w-75 mb-3" style="background-color: #D6DCD7; width: 800px;">
+                  <div class="card-body">
+                      <p class="card-text">{{ comment.comment }}</p>
+                                    <br />
+    <i class="bi bi-hand-thumbs-up" style="padding-right: 10px">
+        
+    </i>
+    <i class="bi bi bi-heart" style="padding-right: 10px">
+        
+    </i>
+    <i class="bi bi-hand-thumbs-down" style="padding-right: 10px">
+       
+    </i>
+                  </div>
+              </div>
+              {% endfor %}
             </div>   
                 </td>
                 <td>

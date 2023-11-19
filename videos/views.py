@@ -2,7 +2,8 @@ from django.shortcuts import render
 from .models import (
     Category,
     Video,
-    Like
+    Like,
+    Comment
 )
 from django.db.models import Count
 
@@ -23,6 +24,7 @@ def video_detail(request, id):
     like = len(Like.objects.filter(type='like'))
     love = len(Like.objects.filter(type='love'))
     sad = len(Like.objects.filter(type='sad'))
+    comments = Comment.objects.all()
     print(like)
     context['video'] = video
     context['videos'] = videos
@@ -30,5 +32,6 @@ def video_detail(request, id):
     context['love'] = love
     context['sad'] = sad
     context['user_icon'] = video.user.username[0]
+    context['comments'] = comments
 
     return render(request, 'video.html', context)
