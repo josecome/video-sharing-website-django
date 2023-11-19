@@ -14,10 +14,10 @@
                           <td>
                               <a href="" class="userstylepic">
                               <strong style="color: white">
-                                
+                                {{ video.user.username|make_list|slice:'1:'|join:'' }}
                               </strong>
                             </a>
-                            <span style="font-size: 22px; font-weight: bold;">{{ video.user.name }}</span><br />
+                            <span style="font-size: 22px; font-weight: bold;">{{ video.user.username }}</span><br />
                             <i class="bi bi-eye" style="padding-right: 4px;">{{ video.views }}</i>
                           </td>
                           <td style="width: 320px; text-align: right;">

@@ -1,0 +1,78 @@
+.center {
+    margin: auto;
+    width: 50%;
+    height: 440px;
+    padding: 10px;
+    border: 1px solid gray;
+  }
+  .upload_file {
+    z-index: 6;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  #lbluploadfile {
+    position: absolute;
+    left: 58%;
+    top: 52%;
+    transform: translate(-50%, -40%);
+    z-index: 4;
+  }
+
+  #choosefile {
+    z-index: 4;
+  }
+
+  .userstylepic {
+    text-decoration: none;
+    background-color: #aed6f1;
+    width: 28px; height: 28px;
+    float: left;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 18px;
+    padding-left: 10px;
+  }
+
+  .userstylepic2 {
+    background-color: #aed6f1;
+    width: 28px;
+    height: 28px;
+    float: left;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 18px;
+    padding-left: 10px;
+    text-decoration: none;
+  }
+
+  .divcommentstyle {
+    width: 80%;
+    border: 1px solid gray;
+    border-radius: 6px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    list-style: none;
+    padding: 2px 4px;
+    display: inline-block;
+  }
+  .commentcontent {
+    margin: 8px;
+    width: 80%;
+  }
+
+  .subscribe {
+    margin-right: 20px;
+    padding: 8px;
+    border: 1px solid gray;
+    border-radius: 26px;
+    background-color: #6D6D6C;
+    color: white
+  }
+
+  .padding_right {
+    padding-right: 10px
+  }
