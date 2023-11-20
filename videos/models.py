@@ -1,3 +1,6 @@
+from django.contrib.contenttypes.fields import GenericForeignKey
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -10,12 +13,32 @@ class Category(models.Model):
     updated_date = models.DateField(null=True)
 
 
+class Like(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    tag = models.CharField(max_length=20)
+    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+    object_id = models.PositiveIntegerField()
+    content_object = GenericForeignKey("content_type", "object_id")
+    user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
+    created_date = models.DateField(null=True)
+    updated_date = models.DateField(null=True)    
+
+    def __str__(self):
+        return self.tag
+
+    class Meta:
+        indexes = [
+            models.Index(fields=["content_type", "object_id"]),
+        ]
+
+
 class Video(models.Model):
     id = models.BigAutoField(primary_key=True)
     title_of_video = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
     image = models.FileField(upload_to="media/images/", null=True)
     views = models.IntegerField()
+    tags = GenericRelation(Like)
     category = models.ForeignKey(Category,  models.SET_NULL, blank=True, null=True) 
     user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
     created_date = models.DateField(null=True)
@@ -25,17 +48,8 @@ class Video(models.Model):
 class Comment(models.Model):
     id = models.BigAutoField(primary_key=True)
     comment = models.CharField(max_length=100)
+    tags = GenericRelation(Like)
     video = models.ForeignKey(Video,  models.SET_NULL, blank=True, null=True) 
-    user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
-    created_date = models.DateField(null=True)
-    updated_date = models.DateField(null=True)
-
-
-class Like(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    type = models.CharField(max_length=20)
-    video = models.ForeignKey(Video,  models.SET_NULL, blank=True, null=True)
-    comment = models.ForeignKey(Comment,  models.SET_NULL, blank=True, null=True) 
     user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
     created_date = models.DateField(null=True)
     updated_date = models.DateField(null=True)

@@ -6,6 +6,7 @@ from .models import (
     Comment
 )
 from django.db.models import Count
+from django.db.models import Q
 
 # Create your views here.
 
@@ -21,11 +22,15 @@ def video_detail(request, id):
     video = Video.objects.get(id=id)
     # videos = Video.objects.filter(id=id).select_related('user')
     videos = Video.objects.all()[:6].select_related('user')
-    like = len(Like.objects.filter(type='like'))
-    love = len(Like.objects.filter(type='love'))
-    sad = len(Like.objects.filter(type='sad'))
-    comments = Comment.objects.filter(video_id=id)
-
+    like = len(Like.objects.filter(tag='like'))
+    love = len(Like.objects.filter(tag='love'))
+    sad = len(Like.objects.filter(tag='sad'))
+    comments = Comment.objects.filter(video_id=id).annotate(
+        count_likes=Count("tags", filter=Q(tags__tag='like')),
+        count_loves=Count("tags", filter=Q(tags__tag='love')),
+        count_sads=Count("tags", filter=Q(tags__tag='sad')),
+        )
+    
     context['video'] = video
     context['videos'] = videos
     context['like'] = like
