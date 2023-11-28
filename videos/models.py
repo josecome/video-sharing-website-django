@@ -49,7 +49,31 @@ class Comment(models.Model):
     id = models.BigAutoField(primary_key=True)
     comment = models.CharField(max_length=100)
     tags = GenericRelation(Like)
-    video = models.ForeignKey(Video,  models.SET_NULL, blank=True, null=True) 
+    video = models.ForeignKey(Video, models.SET_NULL, related_name='comments', blank=True, null=True) 
     user = models.ForeignKey(User,  models.SET_NULL, blank=True, null=True)
     created_date = models.DateField(null=True)
     updated_date = models.DateField(null=True)
+
+
+class Share(models.Model):
+    id = models.AutoField(primary_key=True)
+    post_shared_link = models.CharField(max_length=80)
+    post = models.ForeignKey(Video, related_name='shares', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_created = models.DateField()
+    date_updated = models.DateField(null=True)
+
+    class Meta:  
+        db_table = "shares"
+
+
+class Share(models.Model):
+    id = models.AutoField(primary_key=True)
+    post_shared_link = models.CharField(max_length=80)
+    post = models.ForeignKey(Video, related_name='shares', on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    date_created = models.DateField()
+    date_updated = models.DateField(null=True)
+
+    class Meta:  
+        db_table = "shares"       
