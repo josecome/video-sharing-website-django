@@ -36,6 +36,7 @@ class Video(models.Model):
     id = models.BigAutoField(primary_key=True)
     title_of_video = models.CharField(max_length=20)
     description = models.CharField(max_length=100)
+    link = models.SlugField(null=True) 
     image = models.FileField(upload_to="media/images/", null=True)
     views = models.IntegerField()
     tags = GenericRelation(Like)
@@ -64,16 +65,4 @@ class Share(models.Model):
     date_updated = models.DateField(null=True)
 
     class Meta:  
-        db_table = "shares"
-
-
-class Share(models.Model):
-    id = models.AutoField(primary_key=True)
-    post_shared_link = models.CharField(max_length=80)
-    post = models.ForeignKey(Video, related_name='shares', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    date_created = models.DateField()
-    date_updated = models.DateField(null=True)
-
-    class Meta:  
-        db_table = "shares"       
+        db_table = "shares" 
