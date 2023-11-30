@@ -1,6 +1,9 @@
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from django.http import HttpResponse as Response
+from rest_framework import status
 from django.db.models import Q, Count
+from datetime import date, datetime
 from videos.models import (
     Video,
     Comment,
@@ -46,3 +49,20 @@ class VideoViewSet(viewsets.ModelViewSet):
         else:
             return self.queryset
 
+
+class CommentModelViewSet(viewsets.ModelViewSet):
+    serializer_class = CommentSerializer
+    permission_classes = (IsAuthenticated,)
+
+    def create(self, request, *args, **kwargs):
+
+        server_data = {'user': request.user.id, 'date_created': date.today(), 'date_updated': date.today()}
+        comment_data = request.data
+
+        serializer = self.serializer_class(data = { **server_data, **comment_data})
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
