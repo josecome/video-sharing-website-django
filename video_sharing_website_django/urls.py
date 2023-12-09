@@ -21,7 +21,10 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', video_views.home, name="home"),
+    path('login/', video_views.loginPage, name='login'),
     path('admin/', admin.site.urls),
+    path('logout/', video_views.logout_view, name='logout'),
+    path('register/', video_views.registrationPage, name='register'),
     path('videos/<int:id>', video_views.video_detail, name="videos"),
     path('studio/', video_views.studio, name="studio"),
     path('api/', include('api.urls'))
