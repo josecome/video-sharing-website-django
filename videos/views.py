@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from .forms import CreateUserForm
 from django.contrib import messages
 from .models import (
     Category,
