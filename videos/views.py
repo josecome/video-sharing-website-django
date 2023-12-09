@@ -9,6 +9,13 @@ from .models import (
     Like,
     Comment
 )
+from .utils import (
+    send_email,
+    send_activation_email, 
+    send_reset_password_email, 
+    send_forgotten_username_email, 
+    send_activation_change_email,
+)
 from django.db.models import Count
 from django.db.models import Q
 
